@@ -1,0 +1,97 @@
+print("""
+****************************
+Welcome...
+
+Please Enter Your Password
+****************************
+""")
+
+sys_password = 1234
+sys_mobile_password = 123
+balance = 1000
+login_attempts = 3
+
+while login_attempts > 0:
+    password = int(input("Enter Your Password:"))
+
+    if password != sys_password:
+        login_attempts -= 1
+        print("You entered the wrong password. Please try again... (Remaining login attempts {})".format(login_attempts))
+
+        if login_attempts == 0:
+            print("Your card has been blocked...")
+
+            confirmation = input("Forgot your password?")
+
+            if confirmation == "yes":
+                while True:
+                    sys_new_password = int(input("Enter your new password:"))
+                    sys_new_password_confirmation = int(input("Enter your new password again:"))
+                    if sys_new_password == sys_new_password_confirmation:
+                        sys_password = sys_new_password
+                        login_attempts = 3
+                        print("Operation Successful...")
+                        break
+                    elif sys_new_password != sys_new_password_confirmation:
+                        print("Passwords do not match. Operation canceled.")
+                        continue
+
+    else:
+        while True:
+            print("""
+            *********************************************************
+            Please select the operation you want to perform below...
+            1-Check Balance
+            2-Deposit Money
+            3-Withdraw Money
+            4-Card Password Change
+            5-Mobile Banking Password Change
+            Press 'q' to exit the transaction.
+            *********************************************************
+            """)
+            action = input("Select an operation:")
+
+            if action == "q":
+                print("Have a nice day!")
+                exit()
+
+            elif action == "1":
+                print("Your balance is {}TL".format(balance))
+
+            elif action == "2":
+                amount = int(input("Enter the amount you want to deposit:"))
+                balance += amount
+                print("Operation successful. Your new balance is {}TL".format(balance))
+
+            elif action == "3":
+                amount = int(input("Enter the amount you want to withdraw:"))
+
+                if balance >= amount:
+                    balance -= amount
+                    print("Operation successful. Your new balance is {}TL".format(balance))
+                else:
+                    print("Insufficient Balance...")
+
+            elif action == "4":
+                new_password = int(input("Enter your new password:"))
+                password_confirmation = int(input("Enter your new password again:"))
+
+                if new_password == password_confirmation:
+                    sys_password = password_confirmation
+                    print("Operation successful...")
+                    break
+
+            elif action == "5":
+                mobile_password = int(input("Old password:"))
+
+                if mobile_password == sys_mobile_password:
+                    new_mobile_password = int(input("Enter your new password:"))
+                    new_mobile_password_confirmation = int(input("Enter your new password again:"))
+
+                    if new_mobile_password == new_mobile_password_confirmation:
+                        sys_mobile_password = new_mobile_password_confirmation
+                        print("Operation successful...")
+                        break
+
+            else:
+                print("Invalid operation. Please select a valid operation.")
