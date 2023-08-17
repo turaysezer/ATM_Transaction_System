@@ -56,19 +56,19 @@ while login_attempts > 0:
                 exit()
 
             elif action == "1":
-                print("Your balance is {}TL".format(balance))
+                print("Your balance is {}USDT".format(balance))
 
             elif action == "2":
                 amount = int(input("Enter the amount you want to deposit:"))
                 balance += amount
-                print("Operation successful. Your new balance is {}TL".format(balance))
+                print("Operation successful. Your new balance is {}USDT".format(balance))
 
             elif action == "3":
                 amount = int(input("Enter the amount you want to withdraw:"))
 
                 if balance >= amount:
                     balance -= amount
-                    print("Operation successful. Your new balance is {}TL".format(balance))
+                    print("Operation successful. Your new balance is {}USDT".format(balance))
                 else:
                     print("Insufficient Balance...")
 
